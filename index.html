@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    </style>
+    <title>가위바위보 게임</title>
+    </head>
+    <body>
+    <h1 style="text-align:center">가위 바위 보!</h1>
+    <h2 id="result" style="text-align:center">Good Luck!</h2>
+    <h2 id="userwin">You: 0</h2>
+    <img id="pic1" ></img>
+    <h2 id="computerwin">Computer: 0</h2>
+    <img id="pic2" ></img>
+    </div>
+    <h3 style="text-align:center" >Choose One!</h3>
+    <div class='picture'>
+        <img id='imgbtn1' src='가위.png'>
+        <img id='imgbtn2' src='바위.png'>
+        <img id='imgbtn3' src="보.png">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous"> </script>
+
+      <script>
+        var userwin = 0 //사용자가 이긴 횟수
+        var computerwin = 0 //컴퓨터가 이긴 횟수
+        var imgArray = new Array(); // 컴퓨터가 보여줄 이미지를 나열한 배열 
+        imgArray[1] = '가위.png'
+        imgArray[2] = '바위.png'
+        imgArray[3] = '보.png'
+
+        function rspGame() { // 가위바위보 판별하는 함수 및 점수 추가, 승패 를 알려주는 함수 
+                if ((user == 1 && com == 3) || (user = 2 && com == 1) || (user == 3 && com ==2)) {
+                $('#result').text("Win!").css("color","blue");
+                userwin = userwin + 1;
+                $('#userwin').text("You :" + userwin);
+               }
+               else if (user == com) {
+                   $('#result').text("TIE!!").css("color","grey")
+               }
+               else {
+                    $('#result').text("Lose..").css("color","red")
+                    computerwin = computerwin + 1;
+                    $('#computerwin').text("Computer:" + computerwin);
+               }
+            };
+        
+        function showComImage() { // 컴퓨터가 선택한 이미지을 보여주는 코드
+            var com = Math.floor(Math.random()*3 + 1);
+            var objImg = document.getElementById("pic2");
+            objImg.src = imgArray[com];
+        }
+
+        function showUserImage() { // 클릭하면 유저가 선택한 이미지을 보여주는 코드 및 다른 함수를 합친 최종 코드
+            $('#imgbtn1').click(function () {  
+                var user = 1;
+                var com = Math.floor(Math.random()*3 + 1);
+                var img = $('#pic1').attr('src');
+                $('#pic1').attr('src','가위.png');
+                showComImage();
+                rspGame();
+            });
+            $('#imgbtn2').click(function () {
+                var user = 2;
+                var com = Math.floor(Math.random()*3 + 1);
+                var img = $('#pic1').attr('src');
+                $('#pic1').attr('src','바위.png');
+                showComImage();
+                rspGame();
+            });
+            $('#imgbtn3').click(function () {
+                var user = 3;
+                var com = Math.floor(Math.random()*3 +1);
+                var img = $('#pic1').attr('src');
+                $('#pic1').attr('src','보.png');
+                showComImage();
+                rspGame();
+            });
+        }
+        showUserImage();
+
+            //컴퓨터가 고른 이미지
+            //var computerImg = Math.floor(Math.random()*3) + 1;
+            //var imgName = ['가위.png','바위.png','보.png'];
+            //$('#pic2').attr('src',imgName[randomNumber]);
+        </script>
+    </body>
+</html>
