@@ -4,16 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        #imgbtn1 {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            margin-left: 870px;
+        }
+        #imgbtn2 {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+        #imgbtn3 {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+
+        .box1 {
+            background-color : pink;
+            border-radius: 50%;
+            text-align: center;
+            margin-right: 800px;
+            margin-left: 800px;
+
+        }
+        .box2 {
+            background-color : pink;
+            border-radius: 50%;
+            text-align: center;
+            margin-right: 800px;
+            margin-left: 800px;
+        }
+
+        #userwin {
+            text-align: center;
+        }
+        #computerwin {
+            text-align: center;
+        }
+        h3 {
+            color:pink;
+        }
     </style>
     <title>가위바위보 게임</title>
     </head>
-    <body>
+    <body bgcolor="#CCFFFF">
     <h1 style="text-align:center">가위 바위 보!</h1>
     <h2 id="result" style="text-align:center">Good Luck!</h2>
     <h2 id="userwin">You: 0</h2>
-    <img id="pic1" ></img>
+    <div class="box1">
+        <img id="pic1" ></img>
+    </div>
     <h2 id="computerwin">Computer: 0</h2>
-    <img id="pic2" ></img>
+    <div class="box2">
+        <img id="pic2" ></img>
+    </div>
     </div>
     <h3 style="text-align:center" >Choose One!</h3>
     <div class='picture'>
@@ -34,12 +80,14 @@
         imgArray[3] = 'paper.png'
 
         function rspGame() { // 가위바위보 판별하는 함수 및 점수 추가, 승패 를 알려주는 함수 
+                var user = $('#imgbtn1').val & $('#imgbtn2').val & $('#imgbtn3').val;
+                var com = Math.floor(Math.random()*3) + 1;
                 if ((user == 1 && com == 3) || (user = 2 && com == 1) || (user == 3 && com ==2)) {
                 $('#result').text("Win!").css("color","blue");
                 userwin = userwin + 1;
                 $('#userwin').text("You :" + userwin);
                }
-               else if (user == com) {
+               else if (user == 1 && com == 1 || (user = 2 && com == 2) || (user == 3 && com ==3)) {
                    $('#result').text("TIE!!").css("color","grey")
                }
                else {
@@ -53,30 +101,32 @@
             var com = Math.floor(Math.random()*3 + 1);
             var objImg = document.getElementById("pic2");
             objImg.src = imgArray[com];
+            $('#pic2').css('width', '150px');
+            $('#pic2').css('height', '150px');
         }
 
         function showUserImage() { // 클릭하면 유저가 선택한 이미지을 보여주는 코드 및 다른 함수를 합친 최종 코드
             $('#imgbtn1').click(function () {  
-                var user = 1;
-                var com = Math.floor(Math.random()*3 + 1);
-                var img = $('#pic1').attr('src');
+                $('#imgbtn1').val = 1;
                 $('#pic1').attr('src','scissor.png');
+                $('#pic1').css('width', '150px');
+                $('#pic1').css('height', '150px');
                 showComImage();
                 rspGame();
             });
             $('#imgbtn2').click(function () {
-                var user = 2;
-                var com = Math.floor(Math.random()*3 + 1);
-                var img = $('#pic1').attr('src');
+                $('#imgbtn1').val = 2;
                 $('#pic1').attr('src','rock.png');
+                $('#pic1').css('width', '150px');
+                $('#pic1').css('height', '150px');
                 showComImage();
                 rspGame();
             });
             $('#imgbtn3').click(function () {
-                var user = 3;
-                var com = Math.floor(Math.random()*3 +1);
-                var img = $('#pic1').attr('src');
+                $('#imgbtn1').val = 3;
                 $('#pic1').attr('src','paper.png');
+                $('#pic1').css('width', '150px');
+                $('#pic1').css('height', '150px');
                 showComImage();
                 rspGame();
             });
